@@ -457,8 +457,69 @@ def cmd_formula(args: argparse.Namespace) -> None:
     print("Tipo do campo: Imagem | Componente: Tabela")
 
 
+OPCOES_MENU = [
+    ("organizar", "Organizar arquivos soltos em assets/", cmd_organizar),
+    ("catalogo", "Gerar catálogo JSON com URLs de todos os assets", cmd_catalogo),
+    ("adicionar", "Adicionar um novo asset ao repositório", cmd_adicionar),
+    ("publicar", "Publicar alterações no GitHub", cmd_publicar),
+    ("urls", "Listar URLs CDN de todos os assets", cmd_urls),
+    ("formula", "Gerar fórmula CASE/WHEN para o Looker Studio", cmd_formula),
+]
+
+
+def menu_interativo() -> None:
+    """Exibe menu interativo quando chamado sem argumentos."""
+    print()
+    print("=" * 55)
+    print("  Gerenciador de Assets Visuais — SEGAPE/MEC")
+    print("=" * 55)
+    print()
+
+    for i, (_, descricao, _) in enumerate(OPCOES_MENU, start=1):
+        print(f"  [{i}] {descricao}")
+    print(f"  [0] Sair")
+    print()
+
+    escolha = perguntar("Escolha uma opção")
+
+    if escolha == "0":
+        print("Até mais!")
+        sys.exit(0)
+
+    if not escolha.isdigit() or int(escolha) < 1 or int(escolha) > len(OPCOES_MENU):
+        print(f"Opção inválida: {escolha}")
+        sys.exit(1)
+
+    idx = int(escolha) - 1
+    nome_cmd, _, func_cmd = OPCOES_MENU[idx]
+
+    # Montar args simulado para manter compatibilidade com as funções
+    args = argparse.Namespace(comando=nome_cmd)
+
+    # Campos específicos que alguns comandos esperam
+    if nome_cmd == "adicionar":
+        caminho = perguntar("Caminho do arquivo de imagem")
+        args.arquivo = caminho
+    elif nome_cmd == "publicar":
+        msg = perguntar("Mensagem do commit (Enter para padrão)", obrigatorio=False)
+        args.mensagem = msg
+    elif nome_cmd == "urls":
+        prog = perguntar("Filtrar por programa (Enter para todos)", obrigatorio=False)
+        args.programa = prog
+    elif nome_cmd == "formula":
+        pass  # formula faz suas próprias perguntas internamente
+
+    func_cmd(args)
+
+
 def main() -> None:
-    """Ponto de entrada principal do CLI."""
+    """Ponto de entrada principal — menu interativo ou CLI com flags."""
+    # Se chamado sem argumentos, exibe menu interativo
+    if len(sys.argv) == 1:
+        menu_interativo()
+        return
+
+    # Com argumentos, funciona como CLI tradicional
     parser = argparse.ArgumentParser(
         description="Gerenciador de assets visuais para painéis do MEC no Looker Studio",
     )
@@ -518,8 +579,8 @@ def main() -> None:
     args = parser.parse_args()
 
     if not args.comando:
-        parser.print_help()
-        sys.exit(0)
+        menu_interativo()
+        return
 
     args.func(args)
 
