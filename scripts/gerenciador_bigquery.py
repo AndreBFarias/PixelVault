@@ -311,6 +311,3 @@ def upload_asset(
 # Exemplo de uso em notebook BigQuery:
 # url = upload_asset("/tmp/novo_selo.png", "cnca", "logo", "diamante")
 # print(f"URL para Looker Studio: {url}")
-
-
-# "Aquele que tem um porquê para viver pode suportar quase qualquer como." -- Friedrich Nietzsche

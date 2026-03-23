@@ -140,7 +140,3 @@ imagens_ux_ui/
 │   └── ...
 └── catalogo.json                # Catálogo gerado automaticamente
 ```
-
----
-
-*"Código que não pode ser entendido não pode ser mantido."*

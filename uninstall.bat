@@ -7,7 +7,7 @@ if exist .venv (
 )
 
 if exist catalogo.json (
-    echo Removendo catalogo gerado...
+    echo Removendo catálogo gerado...
     del /f catalogo.json
 )
 

@@ -452,6 +452,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nOperação cancelada pelo usuário.")
         sys.exit(130)
-
-
-# "A liberdade e o preco da eterna vigilancia." -- Thomas Jefferson

@@ -125,7 +125,3 @@ uninstall.bat
 - [GitHub Contents API](https://docs.github.com/en/rest/repos/contents) — API para upload de arquivos
 - [Looker Studio — Tipos de campo](https://support.google.com/looker-studio/answer/6374482) — Documentação sobre tipos de campo
 - [GitHub OAuth Device Flow](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps#device-flow) — Autenticação via Device Flow
-
----
-
-*"A simplicidade é a sofisticação suprema." — Leonardo da Vinci*
