@@ -385,6 +385,78 @@ def cmd_urls(args: argparse.Namespace) -> None:
         print(f"  CDN: {url_cdn}")
 
 
+def cmd_formula(args: argparse.Namespace) -> None:
+    """Gera uma fórmula CASE/WHEN para o Looker Studio."""
+    if not ARQUIVO_CATALOGO.exists():
+        print(
+            "Catálogo não encontrado. Execute primeiro: python main.py catalogo"
+        )
+        return
+
+    with open(ARQUIVO_CATALOGO, "r", encoding="utf-8") as f:
+        assets = json.load(f)
+
+    nome_campo = perguntar("Nome do campo condicional (ex: selo, tipo_escola)")
+
+    # Mostrar assets disponíveis
+    print("\n--- Assets disponíveis ---")
+    for i, asset in enumerate(assets):
+        programa = asset.get("programa", "?")
+        tipo = asset.get("tipo", "?")
+        variante = asset.get("variante")
+        identificador = f"{programa}/{tipo}"
+        if variante:
+            identificador += f"/{variante}"
+        print(f"  [{i+1}] {identificador}")
+
+    linhas_formula = []
+    print(f"\nPara cada linha, informe o valor de '{nome_campo}' e o número do asset.")
+    print("Digite 'fim' no valor para encerrar.\n")
+
+    while True:
+        valor = input(f"Valor de '{nome_campo}' (ou 'fim'): ").strip()
+        if valor.lower() == "fim":
+            break
+
+        numero_str = input("  Número do asset: ").strip()
+        if not numero_str.isdigit():
+            print("  Número inválido.")
+            continue
+
+        idx = int(numero_str) - 1
+        if idx < 0 or idx >= len(assets):
+            print("  Índice fora do alcance.")
+            continue
+
+        url = assets[idx].get("url_cdn", "")
+        linhas_formula.append((valor, url))
+
+        identificador = assets[idx].get("programa", "")
+        variante = assets[idx].get("variante", "")
+        if variante:
+            identificador += f"/{variante}"
+        print(f"  Adicionado: {valor} → {identificador}")
+
+    if not linhas_formula:
+        print("Nenhuma linha adicionada.")
+        return
+
+    formula = "CASE\n"
+    for valor, url in linhas_formula:
+        formula += f'  WHEN {nome_campo} = "{valor}" THEN "{url}"\n'
+    formula += f"  WHEN {nome_campo} IS NULL THEN NULL\n"
+    formula += "  ELSE NULL\n"
+    formula += "END"
+
+    print(f"\n{'=' * 50}")
+    print("Fórmula para o Looker Studio:")
+    print(f"{'=' * 50}\n")
+    print(formula)
+    print(f"\n{'=' * 50}")
+    print("Copie e cole no campo calculado do Looker Studio.")
+    print("Tipo do campo: Imagem | Componente: Tabela")
+
+
 def main() -> None:
     """Ponto de entrada principal do CLI."""
     parser = argparse.ArgumentParser(
@@ -436,6 +508,12 @@ def main() -> None:
         help="Filtra por nome do programa",
     )
     sub_urls.set_defaults(func=cmd_urls)
+
+    sub_formula = subparsers.add_parser(
+        "formula",
+        help="Gera uma fórmula CASE/WHEN para o Looker Studio",
+    )
+    sub_formula.set_defaults(func=cmd_formula)
 
     args = parser.parse_args()
 
