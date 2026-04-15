@@ -1,6 +1,6 @@
-# Imagens UX/UI — SEGAPE/MEC
+# Glyph-Vault
 
-Repositório de assets visuais (logos, ícones, selos) para painéis do MEC no Looker Studio.
+Sistema de gestão de assets visuais (logos, ícones, selos) para painéis analíticos no Looker Studio. Organiza, cataloga e serve imagens via jsDelivr CDN.
 
 As imagens são servidas via [jsDelivr CDN](https://www.jsdelivr.com/) para uso direto em campos do tipo Imagem no Looker Studio.
 
@@ -8,14 +8,14 @@ As imagens são servidas via [jsDelivr CDN](https://www.jsdelivr.com/) para uso 
 
 ### Linux / macOS
 ```bash
-git clone git@github.com:SEGAPE/imagens_ux_ui.git
+git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
 cd imagens_ux_ui
 bash install.sh
 ```
 
 ### Windows
 ```cmd
-git clone git@github.com:SEGAPE/imagens_ux_ui.git
+git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
 cd imagens_ux_ui
 install.bat
 ```
@@ -72,9 +72,9 @@ Exemplos:
 
 ```sql
 CASE
-  WHEN selo = "Bronze" THEN "https://cdn.jsdelivr.net/gh/SEGAPE/imagens_ux_ui@main/assets/cnca/cnca_logo_bronze.png"
-  WHEN selo = "Prata" THEN "https://cdn.jsdelivr.net/gh/SEGAPE/imagens_ux_ui@main/assets/cnca/cnca_logo_prata.png"
-  WHEN selo = "Ouro" THEN "https://cdn.jsdelivr.net/gh/SEGAPE/imagens_ux_ui@main/assets/cnca/cnca_logo_ouro.png"
+  WHEN selo = "Bronze" THEN "https://cdn.jsdelivr.net/gh/{GITHUB_ORG}/{REPO_NAME}@main/assets/cnca/cnca_logo_bronze.png"
+  WHEN selo = "Prata" THEN "https://cdn.jsdelivr.net/gh/{GITHUB_ORG}/{REPO_NAME}@main/assets/cnca/cnca_logo_prata.png"
+  WHEN selo = "Ouro" THEN "https://cdn.jsdelivr.net/gh/{GITHUB_ORG}/{REPO_NAME}@main/assets/cnca/cnca_logo_ouro.png"
   ELSE NULL
 END
 ```

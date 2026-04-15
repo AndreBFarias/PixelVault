@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Gerenciador de assets visuais para painéis do MEC no Looker Studio.
+Gerenciador de assets visuais para painéis analíticos no Looker Studio.
 
 Script CLI principal com subcomandos para organizar, catalogar,
 adicionar e publicar imagens do repositório.
@@ -31,7 +31,7 @@ except ImportError:
     sys.exit(1)
 
 
-REPOSITORIO = "SEGAPE/imagens_ux_ui"
+REPOSITORIO = "{GITHUB_ORG}/{REPO_NAME}"
 BRANCH = "main"
 URL_RAW_BASE = "https://raw.githubusercontent.com/{repo}/{branch}"
 URL_CDN_BASE = "https://cdn.jsdelivr.net/gh/{repo}@{branch}"
@@ -466,7 +466,7 @@ def menu_interativo() -> None:
     """Exibe menu interativo quando chamado sem argumentos."""
     print()
     print("=" * 55)
-    print("  Gerenciador de Assets Visuais — SEGAPE/MEC")
+    print("  Gerenciador de Assets Visuais — Glyph-Vault")
     print("=" * 55)
     print()
 
@@ -516,7 +516,7 @@ def main() -> None:
 
     # Com argumentos, funciona como CLI tradicional
     parser = argparse.ArgumentParser(
-        description="Gerenciador de assets visuais para painéis do MEC no Looker Studio",
+        description="Gerenciador de assets visuais para painéis analíticos no Looker Studio",
     )
 
     subparsers = parser.add_subparsers(dest="comando")

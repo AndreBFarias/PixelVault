@@ -1,18 +1,18 @@
 # Guia de contribuição
 
-Bem-vindo ao repositório de assets visuais do MEC! Este guia explica como contribuir com o projeto.
+Bem-vindo ao repositório de assets visuais do sua organização! Este guia explica como contribuir com o projeto.
 
 ## Pré-requisitos
 
 - Python 3.10 ou superior
-- Git configurado com identidade MEC (`[REDACTED] / [REDACTED]`)
-- Acesso ao repositório SEGAPE no GitHub
+- Git configurado com identidade sua organização (`[REDACTED] / [REDACTED]`)
+- Acesso ao repositório sua-org no GitHub
 
 ## Configuração inicial
 
 1. Clone o repositório:
 ```bash
-git clone git@github.com:SEGAPE/imagens_ux_ui.git
+git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
 cd imagens_ux_ui
 ```
 
@@ -65,12 +65,12 @@ url = upload_asset("/tmp/imagem.png", "programa", "logo", "variante")
 O script suporta dois métodos:
 
 **Método 1 — OAuth Device Flow (interativo)**
-1. Registre um OAuth App na organização SEGAPE (ou peça ao administrador)
+1. Registre um OAuth App na organização sua-org (ou peça ao administrador)
 2. Preencha o `OAUTH_CLIENT_ID` no script `gerenciador_bigquery.py`
 3. Na primeira execução, o script abrirá o navegador para autorização
 
 **Método 2 — GitHub App (automação)**
-1. Crie um GitHub App na organização SEGAPE
+1. Crie um GitHub App na organização sua-org
 2. Configure as variáveis de ambiente:
    - `GITHUB_APP_ID`
    - `GITHUB_APP_PRIVATE_KEY`

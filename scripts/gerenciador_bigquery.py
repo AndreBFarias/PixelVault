@@ -2,7 +2,7 @@
 """
 Gerenciador de upload de imagens ao GitHub a partir de notebooks Python do BigQuery.
 
-Permite enviar assets visuais diretamente para o repositório SEGAPE/imagens_ux_ui
+Permite enviar assets visuais diretamente para o repositório {GITHUB_ORG}/{REPO_NAME}
 sem depender de clone local, usando a API de conteúdo do GitHub.
 """
 
@@ -86,7 +86,7 @@ except ImportError:
         return f"{programa_san}_{tipo_san}.{extensao}"
 
 
-REPOSITORIO = "SEGAPE/imagens_ux_ui"
+REPOSITORIO = "{GITHUB_ORG}/{REPO_NAME}"
 BRANCH = "main"
 URL_CDN_BASE = "https://cdn.jsdelivr.net/gh/{repo}@{branch}"
 GITHUB_API_BASE = "https://api.github.com"
@@ -103,7 +103,7 @@ def obter_token_device_flow(client_id: str) -> str:
     if not client_id:
         raise ValueError(
             "OAUTH_CLIENT_ID não configurado. "
-            "Preencha a constante no script ou registre um OAuth App na organização SEGAPE."
+            "Preencha a constante no script ou registre um OAuth App na sua organização GitHub."
         )
 
     resposta_codigo = requests.post(
