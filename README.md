@@ -9,14 +9,14 @@ As imagens são servidas via [jsDelivr CDN](https://www.jsdelivr.com/) para uso 
 ### Linux / macOS
 ```bash
 git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
-cd imagens_ux_ui
+cd PixelVault
 bash install.sh
 ```
 
 ### Windows
 ```cmd
 git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
-cd imagens_ux_ui
+cd PixelVault
 install.bat
 ```
 

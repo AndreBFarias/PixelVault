@@ -13,7 +13,7 @@ Bem-vindo ao repositório de assets visuais do sua organização! Este guia expl
 1. Clone o repositório:
 ```bash
 git clone git@github.com:{GITHUB_ORG}/{REPO_NAME}.git
-cd imagens_ux_ui
+cd PixelVault
 ```
 
 2. Instale o ambiente:
@@ -122,7 +122,7 @@ Adicione um componente **Tabela** e coloque o campo de imagem como coluna.
 ## Estrutura do repositório
 
 ```
-imagens_ux_ui/
+PixelVault/
 ├── README.md                    # Documentação principal
 ├── CONTRIBUTING.md              # Este guia
 ├── .gitignore
