@@ -466,7 +466,7 @@ def menu_interativo() -> None:
     """Exibe menu interativo quando chamado sem argumentos."""
     print()
     print("=" * 55)
-    print("  Gerenciador de Assets Visuais — Glyph-Vault")
+    print("  Gerenciador de Assets Visuais -- PixelVault")
     print("=" * 55)
     print()
 
